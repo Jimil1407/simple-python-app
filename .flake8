@@ -9,4 +9,4 @@ exclude =
     build,
     dist,
     *.egg-info
-ignore = E203,W503 
+ignore = W293,E203,W503 
