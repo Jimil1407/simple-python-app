@@ -29,6 +29,22 @@ pipeline {
                 '''
             }
         }
+
+	stage('Auto Format') {
+ 	    steps {
+        	echo 'Auto-formatting code with black...'
+        	sh '''
+            	. ${VENV_NAME}/bin/activate
+            black src tests
+            isort src tests || true
+            git config user.name "Jimil1407"
+            git config user.email "jimildigaswala@gmail.com"
+            git add src tests
+            git commit -m "Auto-format with black/isort" || true
+        '''
+    }
+}
+
         
         stage('Code Quality - Lint') {
             steps {
